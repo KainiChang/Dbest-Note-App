@@ -6,10 +6,11 @@ import { nanoid } from "nanoid";
 import {
     addDoc,
     getDocs,
+    setDoc,
     doc,
     deleteDoc,
     updateDoc
-} from "firebase/firestore/lite";
+} from "firebase/firestore";
 import {onSnapshot, collection} from "firebase/firestore"
 import { db } from "../firebase-config";
 
@@ -22,21 +23,42 @@ function Notes() {
     const notesColRef = collection(db, "notes");
 
 
-    React.useEffect(() => {
-        onSnapshot(notesColRef, async () => {
 
-            const notesdata = await getDocs(notesColRef)
-            const notedatadata=notesdata.docs.map((doc) => doc.data())
-            setNotes(notedatadata)
-          })}, [])
+    React.useEffect(() => {
+        onSnapshot(notesColRef,(snapshot)=>{
+            let notedata =[]
+            snapshot.docs.map((doc) => notedata.push(
+                {...doc.data()}
+            ))
+            //  snapshot.docs.map((doc) => {
+            //     if(doc.data.id===currentNoteId){
+            //         notedata.unshift({...doc.data()})
+            //       }else{notedata.push(...doc.data())}
+            //  }
+            // )
+            setNotes(notedata)  
+                  // setNotes(oldNotes => {
+        //     const newArray=[]
+        //     for(let i=0; i<oldNotes.length;i++){
+        //         const oldNote=oldNotes[i]
+        //         if(oldNote.id===currentNoteId){
+        //             newArray.unshift({...oldNote, body: text})
+        //         }else{newArray.push(oldNote)}
+        //     }
+        //     return newArray
+        // })         
+        })
+    }, [])
 
     function createNewNote() {
+        const id =nanoid()
         const newNote = {
             body: "# Type your markdown note here",
             title: `Note ${notes.length + 1}`,
-            id: nanoid(),
+            id: id,
         }
-        addDoc(notesColRef, newNote)
+        // addDoc(notesColRef, newNote)
+        setDoc(doc(db, 'notes', id), newNote);
         setCurrentNoteId(newNote.id)
     }
 
