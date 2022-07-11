@@ -1,57 +1,36 @@
 * {
   box-sizing: border-box;
+
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: 'Karla', sans-serif;
-}
 
-.main1 {
-  display: flex;
-  z-index: 1;
+}
+.main2{
   width: 100vw;
   height: 100vh;
 }
-main {
+.main {
   display: flex;
+  flex-direction: row;
+  z-index: 1;
   width: 100%;
 }
-.main--img1{
-  width:10px;
-  height:10px;
-  margin-top:3px;
-  margin-left: 15px;
-  position: absolute;
-  z-index: 2;
 
-  transition:margin-left 1s ease-in-out;
-
-}
-.main--img2{
-  width:10px;
-  height:10px;
-  margin-top:3px;
-  margin-left:170px;
-  position: absolute;
-  z-index: 2;
-/* transition:margin-left 1s ease-in-out; */
-}
 
 .primNav {
   background-color: #F6F6F6;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
-  width: 200px;
-  min-width: 200px;
-  max-width: 200px;
   transition: width 1s ease-in-out;
   box-shadow:4px 4px 3px #898989;
   z-index: 1;
-
+  height: 100vh;
+  overflow: hidden;
 }
 
 .primNav a {
@@ -63,13 +42,20 @@ main {
 .primNav a.active {
   font-weight: bold;
 }
-
-.primNav img {
+.primNa--img2{
+  position: absolute;
+  margin-top:3px;
+  width:10px;
+  height:10px;
+  z-index:3;
+  transition:margin-left 1s ease-in-out;
+}
+.primNa--img1 {
   margin-top: 20px;
   height: 33px;
   width: 78px;
-
 }
+
 
 .home {
   padding-left: 10%;
@@ -78,7 +64,6 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content:flex-start
 }
 
 .home button {
@@ -101,13 +86,10 @@ button:focus {
   font-weight: 100;
 }
 
-
 .sidebar {
   width: 20%;
   height: 100vh;
 }
-
-
 
 .sidebar--header {
   display: flex;
@@ -126,9 +108,19 @@ button:focus {
   color: white;
   border-radius: 3px;
   height: 30px;
-  width: 30px;
+  width: 160px;
+  margin-top: 20px;
 }
-
+.notelisttitle{
+  border-top: solid 1px #eee;
+  border-bottom: solid 1px #eee;
+padding-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #EC7160;
+  font-size: 14px;
+  line-height: 28px;
+}
 .first-note {
   cursor: pointer;
   background-color: #EC7160;
@@ -139,8 +131,8 @@ button:focus {
 }
 
 .editor {
-  width:80%;
-  height: 100vh;
+  width:auto;
+  height: auto;
 }
 
 .titles {
@@ -190,11 +182,6 @@ button:focus {
   line-height: 20px;
   padding-bottom: 5px;
   overflow: hidden;
-
-  /* white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis; */
-
    text-overflow: ellipsis;
    display: -webkit-box;
    -webkit-line-clamp: 2;
@@ -229,6 +216,7 @@ button:focus {
 
 .split {
   display: flex;
+  width: auto;
 }
 
 .no-notes {

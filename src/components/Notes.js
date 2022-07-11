@@ -19,9 +19,9 @@ function Notes() {
 
     function createNewNote() {
         const newNote = {
-            id: nanoid(),
             body: "# Type your markdown note here",
             title:`Note ${notes.length + 1}`,
+            id:nanoid(),
         }
         setNotes(prevNotes => [newNote, ...prevNotes])
         setCurrentNoteId(newNote.id)
@@ -53,7 +53,7 @@ function Notes() {
     }
     
     return (
-        <main>
+        <div className="main2">
         {
             notes.length > 0 
             ?
@@ -92,7 +92,7 @@ function Notes() {
             </div>
             
         }
-        </main>
+        </div>
     )
 }
 

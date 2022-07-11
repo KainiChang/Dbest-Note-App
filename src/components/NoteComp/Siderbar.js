@@ -4,8 +4,8 @@ import{Link} from "react-router-dom"
 export default function Sidebar(props) {
 
     const myDay=new Date();
-    const noteElements = props.notes.map((note, index) => (
-        <Link to={note.title}  key={note.id} className={`titles ${
+    const noteElements = props.notes.map((note) => (
+        <Link to={note.id}  key={note.id} className={`titles ${
             note.id === props.currentNote.id ? "selected-note" : ""
         }`}
         onClick={() => props.setCurrentNoteId(note.id)}>
@@ -25,9 +25,9 @@ export default function Sidebar(props) {
     return (
         <section className="pane sidebar">
             <div className="sidebar--header">
-                <h3>Notes</h3>
-                <button className="new-note" onClick={props.newNote}>+</button>
+                <button className="new-note" onClick={props.newNote}>Create new note</button>
             </div>
+            <div className="notelisttitle">   Notes</div>
             {noteElements}
         </section>
     )
