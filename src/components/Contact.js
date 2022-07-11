@@ -7,7 +7,6 @@ export default function Contact() {
 
   function handleNameChange(e) {
     setName(e.target.value)
-
   }
 
   React.useEffect(() => {
